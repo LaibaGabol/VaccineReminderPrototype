@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VaxiCare</title>
+  <meta name="description" content="Hospital-side vaccine reminder prototype – demo only, no real messages are sent.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b6e8a'/%3E%3Cpath d='M13 7h6v6h6v6h-6v6h-6v-6H7v-6h6z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- App header: hidden on the login screen -->
+  <header class="app-header" id="app-header" hidden>
+    <div class="app-header__brand">
+      <span class="brand-mark" aria-hidden="true">+</span>
+      <span class="brand-name" data-app-name></span>
+      <span class="brand-hospital" data-hospital-name></span>
+    </div>
+    <div class="app-header__user" id="app-header-user"></div>
+  </header>
+
+  <main class="app-main" id="main" tabindex="-1">
+    <!-- Views are rendered into these containers by the router -->
+    <section id="view-login" class="view" hidden></section>
+    <section id="view-dashboard" class="view" hidden></section>
+    <section id="view-patient" class="view" hidden></section>
+    <section id="view-reminders" class="view" hidden></section>
+  </main>
+
+  <!-- Reminder preview modal renders here -->
+  <div id="modal-root"></div>
+
+  <!-- Classic scripts (not ES modules) so index.html runs directly from file:// -->
+  <script src="js/config.js"></script>
+  <script src="js/engine/dateUtils.js"></script>
+  <script src="js/data/vaccineSchedule.js"></script>
+  <script src="js/engine/scheduleEngine.js"></script>
+  <script src="js/data/samplePatients.js"></script>
+  <script src="js/engine/reminderEngine.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/views/ui.js"></script>
+  <script src="js/views/header.js"></script>
+  <script src="js/views/modal.js"></script>
+  <script src="js/views/phoneMock.js"></script>
+  <script src="js/views/reminderModal.js"></script>
+  <script src="js/views/notifications.js"></script>
+  <script src="js/views/guardianPhone.js"></script>
+  <script src="js/views/loginView.js"></script>
+  <script src="js/views/dateSimulator.js"></script>
+  <script src="js/views/dashboardView.js"></script>
+  <script src="js/views/patientDetailView.js"></script>
+  <script src="js/views/reminderLogView.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

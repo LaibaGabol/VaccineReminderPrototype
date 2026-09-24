@@ -147,7 +147,7 @@ A backend and database; a scheduled server job that sends reminders every mornin
 ---
 
 ## Open decisions for the client
-
+https://vaccine-reminder-prototype.vercel.app/#/login
 1. **Product name.** "VaxiCare" is a placeholder.
 2. **Hospital contact number** to show in reminder messages.
 3. **Recipient wording.** "Guardian" is currently used for the adult who receives reminders. "Parent/Guardian", with a relationship field (mother, father…), may read better.

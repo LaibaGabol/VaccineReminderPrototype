@@ -40,29 +40,77 @@ var Notifications = (function () {
   function setSound(on) {
     soundOn = !!on;
     try { localStorage.setItem(SOUND_KEY, soundOn ? "on" : "off"); } catch (e) { /* not remembered */ }
+    // Switching sound on plays a sample chime, so staff can confirm it works.
+    if (soundOn) chime(true);
   }
 
-  /** Short two-note chime generated with Web Audio (no sound files needed). */
-  function chime() {
-    if (!soundOn) return;
+  /**
+   * The shared audio engine, created on first use.
+   * Browsers only allow sound after the user has clicked or pressed a key on
+   * the page; an engine created before that starts "suspended" (silent) and
+   * must be resumed later, which unlockAudio() and chime() take care of.
+   */
+  function getAudioContext() {
+    if (audioCtx) return audioCtx;
+    var Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return null;
     try {
-      var Ctx = window.AudioContext || window.webkitAudioContext;
-      if (!Ctx) return;
-      audioCtx = audioCtx || new Ctx();
-      var now = audioCtx.currentTime;
-      [880, 1318.5].forEach(function (freq, i) {
-        var osc = audioCtx.createOscillator();
-        var gain = audioCtx.createGain();
-        osc.type = "sine";
-        osc.frequency.value = freq;
-        var start = now + i * 0.12;
+      audioCtx = new Ctx();
+    } catch (e) {
+      audioCtx = null;
+    }
+    return audioCtx;
+  }
+
+  /** Resume a suspended engine; calls `then` once it is running (or can't be). */
+  function ensureRunning(ctx, then) {
+    if (ctx.state === "running") {
+      then();
+      return;
+    }
+    try {
+      ctx.resume().then(then, function () { /* still blocked — stay silent */ });
+    } catch (e) {
+      // Older browsers without a promise-returning resume().
+    }
+  }
+
+  /** On the first click / key press, create or resume the engine so later timed chimes can play. */
+  function unlockAudio() {
+    var ctx = getAudioContext();
+    if (ctx && ctx.state !== "running") {
+      ensureRunning(ctx, function () {});
+    }
+  }
+
+  function playNotes(ctx) {
+    var now = ctx.currentTime + 0.02;
+    // Two-note "ding-dong": a clear, bell-like tone that carries on laptop speakers.
+    [[988, 0], [1319, 0.16]].forEach(function (note) {
+      var start = now + note[1];
+      [1, 2].forEach(function (harmonic) {
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = harmonic === 1 ? "triangle" : "sine";
+        osc.frequency.value = note[0] * harmonic;
+        var peak = harmonic === 1 ? 0.32 : 0.08;
         gain.gain.setValueAtTime(0.0001, start);
-        gain.gain.exponentialRampToValueAtTime(0.12, start + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.35);
-        osc.connect(gain).connect(audioCtx.destination);
+        gain.gain.exponentialRampToValueAtTime(peak, start + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.6);
+        osc.connect(gain).connect(ctx.destination);
         osc.start(start);
-        osc.stop(start + 0.4);
+        osc.stop(start + 0.65);
       });
+    });
+  }
+
+  /** Notification chime generated with Web Audio (no sound files needed). */
+  function chime(force) {
+    if (!soundOn && !force) return;
+    try {
+      var ctx = getAudioContext();
+      if (!ctx) return;
+      ensureRunning(ctx, function () { playNotes(ctx); });
     } catch (e) {
       // Audio unavailable — silent is fine.
     }
@@ -190,6 +238,10 @@ var Notifications = (function () {
     AppState.onReminders(onBatch);
     AppState.subscribe(function () {
       if (!AppState.isLoggedIn()) clearAll();
+    });
+    // Any click or key press (e.g. "Sign in") lets the browser play the chimes that follow.
+    ["pointerdown", "keydown", "touchstart"].forEach(function (type) {
+      document.addEventListener(type, unlockAudio, { capture: true, passive: true });
     });
   }
 

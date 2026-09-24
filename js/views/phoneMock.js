@@ -103,7 +103,7 @@ var PhoneMock = (function () {
       '<div class="phone phone--' + (isWa ? "whatsapp" : "sms") + '">' +
         '<div class="phone__notch" aria-hidden="true"></div>' +
         '<div class="phone__bar">' +
-          '<span class="phone__avatar" aria-hidden="true">+</span>' +
+          '<img class="phone__avatar" src="assets/vaxicare-emblem.png" alt="">' +
           '<span class="phone__contact">' +
             '<strong>' + UI.escapeHtml(contact) + "</strong>" +
             "<small>" + (isWa ? "Business account" : "Text message") + "</small>" +

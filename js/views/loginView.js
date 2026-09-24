@@ -9,8 +9,8 @@
       '<div class="login">' +
         '<div class="login__panel">' +
           '<div class="login__brand">' +
-            '<span class="brand-mark brand-mark--lg" aria-hidden="true">+</span>' +
-            '<h1 class="login__title">' + e(CONFIG.APP_NAME) + "</h1>" +
+            '<img class="login__logo" src="assets/vaxicare-logo.jpg" alt="' + e(CONFIG.APP_NAME) + ' – Protecting Generations">' +
+            '<h1 class="visually-hidden">' + e(CONFIG.APP_NAME) + "</h1>" +
             '<p class="login__subtitle">' + e(CONFIG.APP_TAGLINE) + "</p>" +
             '<p class="login__hospital">' + e(CONFIG.HOSPITAL_NAME) + "</p>" +
           "</div>" +

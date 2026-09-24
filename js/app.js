@@ -13,6 +13,12 @@
     document.querySelectorAll("[data-hospital-name]").forEach(function (el) {
       el.textContent = CONFIG.HOSPITAL_NAME;
     });
+    document.querySelectorAll("[data-authors]").forEach(function (el) {
+      el.textContent = CONFIG.AUTHORS;
+    });
+    document.querySelectorAll("[data-supervisor]").forEach(function (el) {
+      el.textContent = CONFIG.SUPERVISOR;
+    });
   }
 
   /** Run the simulated daily reminder job whenever a staff session begins. */

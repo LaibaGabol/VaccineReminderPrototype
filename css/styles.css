@@ -71,6 +71,10 @@ body {
 }
 
 body {
+  /* Column layout keeps the credits footer at the bottom of short pages */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: var(--font-sans);
   font-size: var(--text-md);
   line-height: 1.5;
@@ -160,9 +164,35 @@ a {
 }
 
 .app-main {
+  flex: 1 0 auto;
+  width: 100%;
   max-width: var(--content-max);
   margin: 0 auto;
   padding: var(--space-5);
+}
+
+/* Credits footer (every screen) */
+.app-credits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1) var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  text-align: center;
+}
+
+.app-credits strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* Signed-in screens: leave room so the floating phone button never covers the credits */
+body:not([data-route="login"]) .app-credits {
+  padding-bottom: 88px;
 }
 
 /* =========================================================
@@ -418,12 +448,21 @@ a {
    Login screen
    ========================================================= */
 body[data-route="login"] .app-main {
+  display: flex;
+  flex-direction: column;
   max-width: none;
   padding: 0;
 }
 
+body[data-route="login"] #view-login {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fills the space above the credits footer */
 .login {
-  min-height: 100vh;
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1557,11 +1596,6 @@ button.toast:hover {
   cursor: pointer;
 }
 
-/* Room so the floating button never covers the last row */
-body:not([data-route="login"]) .app-main {
-  padding-bottom: 96px;
-}
-
 .phone-fab:hover {
   background: var(--color-primary-hover);
 }
@@ -1841,6 +1875,16 @@ body:not([data-route="login"]) .app-main {
    Responsive
    ========================================================= */
 @media (max-width: 640px) {
+  /* Credits stack on two lines; the separator dot would dangle */
+  .app-credits {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .app-credits__sep {
+    display: none;
+  }
+
   /* Overview grid: one row of dose chips per vaccine instead of a wide table */
   .ov-table,
   .ov-table tbody {

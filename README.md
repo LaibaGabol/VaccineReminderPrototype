@@ -6,6 +6,8 @@ A clickable prototype of a hospital-side vaccine reminder system for **DOW Medic
 
 "VaxiCare" is a placeholder name while the client chooses the final one (see [Configuration](#configuration)).
 
+**Authors:** Faria Kashish & Laiba Gabol · **Supervised by** Dr. Ale Zehra
+
 ---
 
 ## Running it
@@ -100,6 +102,7 @@ Branding and rules are in **`js/config.js`**:
 | `APP_NAME` | `VaxiCare` | Placeholder until the client chooses the name. Also update the `<title>` in `index.html`. |
 | `HOSPITAL_NAME` | `DOW Medical Hospital` | Used in the header, login screen and every message. |
 | `HOSPITAL_PHONE` | `+92 42 1234 5678` | **Placeholder.** Replace it with the real enquiry number. |
+| `AUTHORS` / `SUPERVISOR` | `Faria Kashish & Laiba Gabol` / `Dr. Ale Zehra` | Credits shown in the footer on every screen. |
 | `DEMO_USERNAME` / `DEMO_PASSWORD` | `staff` / `vaxi123` | Demo account. |
 | `DUE_SOON_DAYS` | `3` | Days before the due date when a dose becomes Due Soon. |
 

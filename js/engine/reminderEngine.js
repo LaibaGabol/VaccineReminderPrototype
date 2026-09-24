@@ -77,7 +77,7 @@ var ReminderEngine = (function () {
    * @param patients    patient records
    * @param date        date of the reminder check
    * @param sentStages  map doseKey -> highest stage already sent (not modified)
-   * @param options     { hospitalName, hospitalPhone, dueSoonDays } (optional)
+   * @param options     { senderName, contactPhone, dueSoonDays } (optional)
    * @returns array of reminders, one per patient that needs one:
    *   { patient, items: [{ dose, stage }], stage, message }
    *   `stage` is the most urgent stage among the items.
@@ -127,11 +127,12 @@ var ReminderEngine = (function () {
     return best;
   }
 
-  function resolveHospital(options) {
+  /** Who the message is from (the app name) and the enquiry number to print. */
+  function resolveSender(options) {
     var hasConfig = typeof CONFIG !== "undefined";
     return {
-      name: (options && options.hospitalName) || (hasConfig ? CONFIG.HOSPITAL_NAME : "the hospital"),
-      phone: (options && options.hospitalPhone) || (hasConfig ? CONFIG.HOSPITAL_PHONE : "")
+      name: (options && options.senderName) || (hasConfig && CONFIG.APP_NAME) || "VaxiCare",
+      phone: (options && options.contactPhone) || (hasConfig && CONFIG.HOSPITAL_PHONE) || ""
     };
   }
 
@@ -158,11 +159,11 @@ var ReminderEngine = (function () {
    * several give a combined message listing each dose.
    */
   function buildMessage(patient, items, date, options) {
-    var hospital = resolveHospital(options);
+    var sender = resolveSender(options);
     var greeting = "Dear " + (patient.guardianName || "Parent/Guardian") + ",";
-    var closing = hospital.phone
-      ? "For queries call " + hospital.phone + ". – " + hospital.name
-      : "– " + hospital.name;
+    var closing = sender.phone
+      ? "For queries call " + sender.phone + ". – " + sender.name
+      : "– " + sender.name;
     var stage = mostUrgentStage(items);
     var urgent = stage === STAGE.OVERDUE || stage === STAGE.OVERDUE_FINAL;
     var body;
@@ -191,7 +192,7 @@ var ReminderEngine = (function () {
       action += " Our staff will contact you to arrange the visit.";
     }
 
-    return "Reminder from " + hospital.name + "\n" +
+    return "Reminder from " + sender.name + "\n" +
            greeting + "\n" +
            body + "\n" +
            action + "\n" +

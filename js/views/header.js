@@ -1,6 +1,6 @@
 /**
  * App header: navigation, logged-in staff name and logout.
- * (Brand and hospital name are filled in by app.js from CONFIG.)
+ * (The brand name is filled in by app.js from CONFIG.)
  */
 var Header = (function () {
   var NAV = [

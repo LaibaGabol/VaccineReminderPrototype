@@ -1,6 +1,6 @@
 # VaxiCare – Client Demo Guide
 
-A click-by-click script for presenting the prototype. It follows one story: **a nurse's morning at DOW Medical Hospital, then fast-forwarding through the next ten days.** Follow the steps in order and every feature gets shown.
+A click-by-click script for presenting the prototype. It follows one story: **a nurse's morning at the hospital, then fast-forwarding through the next ten days.** Follow the steps in order and every feature gets shown.
 
 **Time:** about 15 minutes, plus questions.
 **Notation:** *Click* = what you do. 💬 = what to say. 👀 = what the client will see.
@@ -23,7 +23,7 @@ A click-by-click script for presenting the prototype. It follows one story: **a 
 
 ## Act 1 – Sign in (1 min)
 
-1. 👀 The login screen shows the app name, "Vaccine Reminder System" and **DOW Medical Hospital**.
+1. 👀 The login screen shows the **VaxiCare** logo (*Protecting Generations*) and "Vaccine Reminder System".
    💬 *"Staff sign in first. In this prototype it's a single demo account; the real system would have individual staff accounts."*
 2. *Type* `staff` and a **wrong password**, then *click* **Sign in**.
    👀 "Incorrect username or password."
@@ -92,7 +92,7 @@ A click-by-click script for presenting the prototype. It follows one story: **a 
    - To **Nadia Hussain**, with her phone number
    - The vaccine and due date
    - A phone showing the exact message:
-     > *Reminder from DOW Medical Hospital – Dear Nadia Hussain, Zara Hussain's MMR Dose 1 vaccine is due today… For queries call …*
+     > *Reminder from VaxiCare – Dear Nadia Hussain, Zara Hussain's MMR Dose 1 vaccine is due today… For queries call …*
    - **Reminder: Due today**
    - The yellow note: **"Simulation only. No message has been sent."**
 3. *Click* **WhatsApp** and then **SMS**. 👀 The phone switches between WhatsApp style (green, ✓✓ ticks) and SMS style.

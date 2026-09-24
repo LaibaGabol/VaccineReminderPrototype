@@ -11,9 +11,7 @@
           '<div class="login__brand">' +
             '<img class="login__logo" src="assets/vaxicare-logo.jpg" alt="' + e(CONFIG.APP_NAME) + ' – Protecting Generations">' +
             '<h1 class="visually-hidden">' + e(CONFIG.APP_NAME) + "</h1>" +
-            '<p class="login__subtitle">' + e(CONFIG.APP_TAGLINE) + "</p>" +
-            '<p class="login__hospital">' + e(CONFIG.HOSPITAL_NAME) + "</p>" +
-          "</div>" +
+            '<p class="login__subtitle">' + e(CONFIG.APP_TAGLINE) + "</p>" +          "</div>" +
 
           '<form class="login__form" novalidate>' +
             '<h2 class="login__heading">Staff sign in</h2>' +

@@ -6,7 +6,7 @@ var CONFIG = {
   // Placeholder name — awaiting client's final choice.
   APP_NAME: "VaxiCare",
   APP_TAGLINE: "Vaccine Reminder System",
-  HOSPITAL_NAME: "DOW Medical Hospital",
+  // Enquiry number printed at the end of every reminder message.
   HOSPITAL_PHONE: "+92 42 1234 5678",
 
   // Project credits shown in the footer on every screen.

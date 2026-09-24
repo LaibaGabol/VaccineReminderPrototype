@@ -10,9 +10,6 @@
     document.querySelectorAll("[data-app-name]").forEach(function (el) {
       el.textContent = CONFIG.APP_NAME;
     });
-    document.querySelectorAll("[data-hospital-name]").forEach(function (el) {
-      el.textContent = CONFIG.HOSPITAL_NAME;
-    });
     document.querySelectorAll("[data-authors]").forEach(function (el) {
       el.textContent = CONFIG.AUTHORS;
     });

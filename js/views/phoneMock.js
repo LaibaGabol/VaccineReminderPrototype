@@ -82,7 +82,7 @@ var PhoneMock = (function () {
    * }
    */
   function html(options) {
-    var contact = options.contact || CONFIG.HOSPITAL_NAME;
+    var contact = options.contact || CONFIG.APP_NAME;
     var messages = options.messages || [];
     var body = "";
     var lastDate = null;

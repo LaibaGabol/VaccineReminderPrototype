@@ -1,6 +1,6 @@
 # VaxiCare – Hospital Vaccine Reminder Prototype
 
-A clickable prototype of a hospital-side vaccine reminder system for **DOW Medical Hospital**. It loads sample patients, calculates each child's full vaccine schedule, flags doses as **Pending / Due Soon / Overdue / Done**, and shows the exact reminder messages that guardians would receive.
+A clickable prototype of a hospital-side vaccine reminder system. It loads sample patients, calculates each child's full vaccine schedule, flags doses as **Pending / Due Soon / Overdue / Done**, and shows the exact reminder messages that guardians would receive.
 
 > **Demo only.** There is no backend, no database, no real login and **no messages are sent**. Everything runs in the browser with sample data.
 
@@ -99,9 +99,8 @@ Branding and rules are in **`js/config.js`**:
 
 | Setting | Current value | Notes |
 |---|---|---|
-| `APP_NAME` | `VaxiCare` | Placeholder until the client chooses the name. Also update the `<title>` in `index.html`. |
-| `HOSPITAL_NAME` | `DOW Medical Hospital` | Used in the header, login screen and every message. |
-| `HOSPITAL_PHONE` | `+92 42 1234 5678` | **Placeholder.** Replace it with the real enquiry number. |
+| `APP_NAME` | `VaxiCare` | Shown in the header and as the sender of every reminder message. Also update the `<title>` in `index.html` if it changes. |
+| `HOSPITAL_PHONE` | `+92 42 1234 5678` | Enquiry number at the end of every reminder message. **Placeholder**: replace it with the real number. |
 | `AUTHORS` / `SUPERVISOR` | `Faria Kashish & Laiba Gabol` / `Dr. Ale Zehra` | Credits shown in the footer on every screen. |
 | `DEMO_USERNAME` / `DEMO_PASSWORD` | `staff` / `vaxi123` | Demo account. |
 | `DUE_SOON_DAYS` | `3` | Days before the due date when a dose becomes Due Soon. |
